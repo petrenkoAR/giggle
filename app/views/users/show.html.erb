@@ -1,0 +1,21 @@
+<% if user_signed_in? && @user.id == current_user.id %>
+    <%= link_to 'Изменить профиль', edit_user_registration_path %>
+<% elsif user_signed_in? && current_user.followees.include?(@user) %>
+    <h5><%= button_to "Unfollow", unfollow_user_path, method: "POST" %></h5>
+<% elsif user_signed_in? %>
+    <h5><%= button_to "Follow", follow_user_path, method: "POST"  %></h5>
+<% else %>
+<%# можно добавить кнопку для регистрации или что-нибудь ещё  %>
+<% end%>
+
+Followers <%= @user.followers.count %>
+Following <%= link_to @user.followees.count, following_path %>
+
+Любимое <%= @user.favorites.count %> <%= (@user.favorites.count) == 1 ? 'Post' : 'Posts'%>
+<% @posts.each do |post| %>
+  <br><%= link_to post.title, post %>
+<% end %>
+
+<% if user_signed_in? && current_user.isadmin == true %>
+  <p>Admin <%= @user.isadmin %></p>
+<% end %>

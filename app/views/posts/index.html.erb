@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <tr>
+      <th>Название</th>
+      <th>Подпись</th>
+      <th>Автор</th>
+      <th>Контент</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.name %></td>
+        <td><%= post.title %></td>
+        <td><%= post.author %></td>
+        <td><%= post.content.html_safe %></td>
+        <td><%= post.likes.count %> <%= (post.likes.count) == 1 ? 'Like' : 'Likes'%></td>
+        <td><%= post.comments.count %> <%= (post.comments.count) == 1 ? 'Comment' : 'Commentes'%></td>
+        <td><%= link_to 'Show', post %></td>
+        <td><%= link_to 'Edit', edit_post_path(post) %></td>
+        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Post', new_post_path %>

@@ -1,0 +1,7 @@
+<h1>Hello, Rails!</h1>
+
+<% colors = [ ['красный', 'red', 'red.svg'], ['синий', 'blue', 'blue.svg'], ['голубой', 'cyan', 'cyan.png'] ]
+%>
+<% colors.each do |color| %> <%= render 'counter', color: color %>
+<% end %>
+<h1>Выбирай себе любой</h1>
